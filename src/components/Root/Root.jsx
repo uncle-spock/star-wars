@@ -1,5 +1,5 @@
 import React from 'react';
-import App from './App';
+import App from '../App/App';
 
 const Root = () => {
     return <App />;
