@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import Loader from '../Loader/Loader';
 import * as api from '../../services/api/apiService';
+import * as utils from '../../services/utils';
 
 import './random-planet.scss';
 
 class RandomPlanet extends Component {
 	state = {
-		id: null,
-		name: null,
-		rotationPeriod: null,
-		orbitalPeriod: null,
-		diameter: null,
-		climate: null
+		planet: {}
 	}
 
 	constructor() {
@@ -21,37 +17,45 @@ class RandomPlanet extends Component {
 
 	async updatePlanet() {
 		try {
-			const allPlanets = (await api.getPlanets()).results;
+			const allPlanets = (await api.getAllPlanets()).results;
 			const id = Math.floor(Math.random() * (allPlanets.length - 1));
-			const planet = allPlanets[id];
-			const { name, rotation_period, orbital_period, diameter, climate } = planet;
+			const planet = utils.transformPlanetData(allPlanets[id], id);
 
-			this.setState({
-				id,
-				name: name,
-				rotationPeriod: rotation_period,
-				orbitalPeriod: orbital_period,
-				diameter: diameter,
-				climate: climate
-			});
+			this.setState({ planet });
 		} catch (err) {
 			throw new Error(`Oops. Missing update planet: ${err}`);
 		}
 	}
 
 	render() {
-		const { id, name, rotationPeriod, orbitalPeriod, diameter, climate } = this.state;
+		const {
+			id,
+			name,
+			population,
+			rotationPeriod,
+			orbitalPeriod,
+			diameter,
+			climate
+		} = this.state.planet;
+
+		console.log(this.state.planet);
+
 
 		return (
 			<div className="card-box with-img">
 				<div className="card-img-box">
-					{id !== null ? <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="planet" /> : <Loader />}
+					{id > 1 ? <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="planet" /> : <Loader />}
 				</div>
 
 				<div className="card-content-box">
 					<h3>{name}</h3>
 
 					<ul className="details-list">
+						<li>
+							<span className="details-label">Population:</span>
+							<span className="details-value">{population}</span>
+						</li>
+
 						<li>
 							<span className="details-label">Rotation Period:</span>
 							<span className="details-value">{rotationPeriod}</span>
