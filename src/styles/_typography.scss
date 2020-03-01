@@ -1,0 +1,27 @@
+// Typography
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $headings-font-family;
+  font-weight: 600;
+  margin: 0 0 0.5em;
+  color: $headings-color;
+  line-height: $headings-line-height;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: $base-link-color;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

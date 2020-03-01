@@ -1,0 +1,51 @@
+// CUSTOM VARIABLES
+
+// media queries
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-ipad: 1025px;
+
+// transitions
+$base-anim-speed: 0.2s;
+$base-anim-type: ease-in-out;
+
+// colors
+$black: #000;
+$white: #fff;
+$primary: #ffb511;
+$secondary: #3cbfb1;
+$danger: #ff0000;
+$error: $danger;
+$grey-light: #444;
+$grey-medium: #303030;
+$grey-dark: #222;
+
+//custom colors
+$body-bg: $grey-dark;
+$base-text-color: rgba($white, 0.9);
+
+// grid
+$grid-gutter-sm: 8px;
+$grid-gutter-md: 16px;
+$grid-gutter-lg: 24px;
+
+// typography
+$base-rem: 16px;
+$base-font-family: "Roboto", "Helvetica Neue", sans-serif;
+$base-font-size: 1rem;
+$base-line-height: 1.4;
+$base-link-color: $primary;
+$headings-font-family: inherit;
+$headings-line-height: inherit;
+$headings-color: inherit;
+
+// buttons
+$base-button-font-size: 1rem;
+$base-button-line-height: $base-line-height;
+$base-button-font-weight: 500;
+$base-button-padding: 10px;
+
+//design's variables
+$base-radius: 4px;

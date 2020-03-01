@@ -1,8 +1,8 @@
 const BASE_URL = 'https://swapi.co/api';
 
 const fetchApiData = async url => {
-    const response = await fetch(`${BASE_URL}/${url}/`);
-    return await response.json();
+	const response = await fetch(`${BASE_URL}/${url}/`);
+	return await response.json();
 };
 
 export const getPeople = () => fetchApiData(`people`);

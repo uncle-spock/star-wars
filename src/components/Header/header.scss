@@ -1,0 +1,42 @@
+@import '../../styles/variables';
+@import '../../styles/functions';
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px $grid-gutter-md;
+  align-items: center;
+  align-content: flex-start;
+  background-color: $grey-medium;
+
+  .logo {
+    height: 30px;
+    flex-shrink: 0;
+
+    img {
+      max-height: 100%;
+    }
+  }
+
+  .nav-box {
+    flex-shrink: 0;
+    margin-left: auto;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 -10px;
+      display: flex;
+      color: rgba($base-text-color, .6);
+      font-size: rem-calc(20);
+
+      li {
+        padding: 0 10px;
+
+        &.active {
+          color: $primary;
+        }
+      }
+    }
+  }
+}

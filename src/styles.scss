@@ -1,6 +1,7 @@
-body {
-  margin: 0;
-  font-family: 'Arial', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import 'styles/normalizer';
+@import 'styles/variables';
+@import 'styles/functions';
+@import 'styles/mixins';
+@import 'styles/forms';
+@import 'styles/typography';
+@import 'styles/global-styles';

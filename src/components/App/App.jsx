@@ -1,45 +1,29 @@
-import React, { Component } from 'react';
-import * as api from '../../services/api/apiService';
+import React from 'react';
+import PageLayout from '../PageLayout/PageLayout'
+import RandomPlanet from '../RandomPlanet/RandomPlanet';
+import ItemList from '../ItemList/ItemList';
+import PersonalDetails from '../PersonDetails/PersonDetails';
 
-class App extends Component {
-  state = {
-    people: null
-  }
+const App = () => {
+	return (
+		<PageLayout>
+			<div className="container">
+				<div className="mb-5">
+					<RandomPlanet />
+				</div>
 
-  async getPeople() {
-    try {
-      const people = await await api.getPeople();
-      this.setState({
-        people: people.results
-      });
-    } catch (err) {
-      throw new Error(`Oops: ${err}`);
-    }
-  }
+				<div className="row">
+					<div className="col-12 col-md-6">
+						<ItemList />
+					</div>
 
-  componentDidMount() {
-    this.getPeople();
-  }
-
-  render() {
-    const { people } = this.state;
-
-    return (
-      <>
-        {people ? people.map(person => (
-          <div key={person.name}>
-            <span><strong>Name:</strong> {person.name} </span>
-            <span><strong>Height:</strong> {person.height} </span>
-            <span><strong>Mass:</strong> {person.mass} </span>
-            <span><strong>Hair color:</strong> {person.hair_color} </span>
-            <span><strong>Skin color:</strong> {person.skin_color} </span>
-          </div>
-        )) : (
-            'Please wait'
-          )}
-      </>
-    );
-  }
-}
+					<div className="col-12 col-md-6">
+						<PersonalDetails />
+					</div>
+				</div>
+			</div>
+		</PageLayout>
+	);
+};
 
 export default App;

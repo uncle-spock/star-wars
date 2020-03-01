@@ -1,0 +1,92 @@
+html {
+  height: 100%;
+  font-size: $base-rem;
+}
+
+body {
+  height: 100%;
+  background-color: $body-bg;
+  color: $base-text-color;
+}
+
+#root {
+  min-height: 100%;
+}
+
+.details-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  li {
+    display: flex;
+    padding: 7px 10px;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $grey-light;
+    }
+  }
+
+  .details-label {
+    width: 150px;
+    flex-shrink: 0;
+    font-weight: bold;
+  }
+
+  .details-value {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+  }
+}
+
+.card-box {
+  background-color: $grey-medium;
+  border: 1px solid $grey-light;
+  border-radius: $base-radius;
+
+  &.with-img {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .card-img-box {
+    flex-shrink: 0;
+    padding: 10px;
+    border-radius: $base-radius;
+    text-align: center;
+
+    img {
+      border-radius: inherit;
+    }
+  }
+
+  .card-content-box {
+    flex-shrink: 0;
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 0 10px;
+  }
+}
+
+.separated-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: $grey-medium;
+  border: 1px solid $grey-light;
+  border-radius: $base-radius;
+
+  li {
+    padding: 7px 10px;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $grey-light;
+    }
+  }
+}
