@@ -84,6 +84,13 @@ body {
 
   li {
     padding: 7px 10px;
+    cursor: pointer;
+    transition: background-color .15s ease-in-out;
+
+    &:hover,
+    &.selected {
+      background-color: $grey-light;
+    }
 
     &:not(:last-child) {
       border-bottom: 1px solid $grey-light;

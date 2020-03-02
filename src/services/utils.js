@@ -1,20 +1,21 @@
-// export const extractId = (str) => {
-// 	const idRegExp = /\/([0-9]*)\/$/;
-// 	return str.match(idRegExp)[1];
-// };
+export const extractId = (str) => {
+	const idRegExp = /\/([0-9]*)\/$/;
+	return str.match(idRegExp)[1];
+};
 
-export const transformPlanetData = (planet, id) => {
+export const transformPlanetData = planet => {
 	const {
 		name,
 		rotation_period,
 		orbital_period,
 		diameter,
 		climate,
-		population
+		population,
+		url
 	} = planet;
 
 	return {
-		id,
+		id: extractId(url),
 		name,
 		rotationPeriod: rotation_period,
 		orbitalPeriod: orbital_period,
@@ -24,7 +25,7 @@ export const transformPlanetData = (planet, id) => {
 	};
 };
 
-export const transformStarshipData = (starship, id) => {
+export const transformStarshipData = starship => {
 	const {
 		name,
 		model,
@@ -33,11 +34,12 @@ export const transformStarshipData = (starship, id) => {
 		length,
 		crew,
 		passengers,
-		cargo_capacity
+		cargo_capacity,
+		url
 	} = starship;
 
 	return {
-		id,
+		id: extractId(url),
 		name,
 		model,
 		manufacturer,
@@ -49,16 +51,17 @@ export const transformStarshipData = (starship, id) => {
 	};
 };
 
-export const transformPersonData = (person, id) => {
+export const transformPersonData = person => {
 	const {
 		name,
 		gender,
 		birth_year,
-		eye_color
+		eye_color,
+		url
 	} = person;
 
 	return {
-		id,
+		id: extractId(url),
 		name,
 		gender,
 		birthYear: birth_year,

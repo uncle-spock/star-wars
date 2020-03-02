@@ -1,29 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PageLayout from '../PageLayout/PageLayout'
 import RandomPlanet from '../RandomPlanet/RandomPlanet';
 import ItemList from '../ItemList/ItemList';
 import PersonalDetails from '../PersonDetails/PersonDetails';
 
-const App = () => {
-	return (
-		<PageLayout>
-			<div className="container">
-				<div className="mb-5">
-					<RandomPlanet />
-				</div>
+class App extends Component {
+	state = {
+		selectedPersonId: null
+	}
 
-				<div className="row">
-					<div className="col-12 col-md-6">
-						<ItemList />
+	onPersonSelect = id => {
+		this.setState({
+			selectedPersonId: id
+		});
+	}
+
+	render() {
+		const { selectedPersonId } = this.state;
+
+		return (
+			<PageLayout>
+				<div className="container">
+					<div className="mb-5">
+						<RandomPlanet />
 					</div>
 
-					<div className="col-12 col-md-6">
-						<PersonalDetails />
+					<div className="row">
+						<div className="col-12 col-md-6">
+							<ItemList selectedPersonId={selectedPersonId} onPersonSelect={this.onPersonSelect} />
+						</div>
+
+						<div className="col-12 col-md-6">
+							<PersonalDetails selectedPersonId={selectedPersonId} />
+						</div>
 					</div>
 				</div>
-			</div>
-		</PageLayout>
-	);
+			</PageLayout>
+		);
+	}
 };
 
 export default App;

@@ -10,8 +10,7 @@ class RandomPlanet extends Component {
 		isLoading: true
 	}
 
-	constructor() {
-		super();
+	componentDidMount() {
 		this.updatePlanet();
 	}
 
@@ -19,7 +18,7 @@ class RandomPlanet extends Component {
 		try {
 			const allPlanets = (await api.getAllPlanets()).results;
 			const id = Math.floor(Math.random() * (allPlanets.length - 1));
-			const planet = utils.transformPlanetData(allPlanets[id], id);
+			const planet = utils.transformPlanetData(allPlanets[id]);
 
 			this.setState({
 				planet,
