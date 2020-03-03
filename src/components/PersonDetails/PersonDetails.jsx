@@ -1,43 +1,72 @@
 import React, { Component } from 'react';
 
-import * as api from '../../services/api/apiService';
-
 import './person-details.scss';
-import personImg from '../../assets/img/r2d2.jpg';
 
-class PersonalDetails extends Component {
-	// state = {
-	// 	person: null
-	// }
+import * as api from '../../services/api/apiService';
+import Loader from '../Loader/Loader';
 
-	componentDidUpdate() {
+
+class PersonDetails extends Component {
+	state = {
+		person: null,
+		isLoading: true
+	}
+
+	componentDidMount() {
 		this.updatePerson();
+	}
+
+	componentDidUpdate(prevProps) {
+		if (this.props.selectedPersonId !== prevProps.selectedPersonId) {
+			this.updatePerson();
+		}
 	}
 
 	async updatePerson() {
 		const { selectedPersonId } = this.props;
 
-		try {
-			const person = (await api.getPerson(selectedPersonId)).results;
+		if (!selectedPersonId) {
+			try {
+				const person = (await api.getPeople())[0];
 
-			this.setState({ person });
+				this.setState({
+					person,
+					isLoading: false
+				});
+
+				return;
+			} catch (err) {
+				throw new Error(`Oops. Missing update person details: ${err}`);
+			}
+		};
+
+		this.setState({
+			isLoading: true
+		});
+
+		try {
+			const person = await api.getPerson(selectedPersonId);
+
+			this.setState({
+				person,
+				isLoading: false
+			});
 		} catch (err) {
-			throw new Error(`Oops. Missing update people list: ${err}`);
+			throw new Error(`Oops. Missing update person details: ${err}`);
 		}
 	}
 
 	render() {
-		const { person } = this.state;
+		const { person, isLoading } = this.state;
 
-		if (!person) return null;
+		if (isLoading) return <Loader />;
 
-		const { name, gender, birthYear, eyeColor } = person;
-
+		const { id, name, gender, birthYear, eyeColor } = person;
 
 		return (
 			<div className="card-box with-img">
 				<div className="card-img-box">
-					<img src={personImg} alt="person" />
+					<img src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} alt="people" />
 				</div>
 
 				<div className="card-content-box">
@@ -65,4 +94,4 @@ class PersonalDetails extends Component {
 	}
 };
 
-export default PersonalDetails;
+export default PersonDetails;

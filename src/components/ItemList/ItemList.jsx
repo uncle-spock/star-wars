@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import * as api from '../../services/api/apiService';
-import * as utils from '../../services/utils';
 import Loader from '../Loader/Loader';
 
 class ItemList extends Component {
@@ -15,7 +14,7 @@ class ItemList extends Component {
 
 	async updatePeopleList() {
 		try {
-			const peopleList = (await api.getPeople()).results;
+			const peopleList = await api.getPeople();
 
 			this.setState({
 				peopleList,
@@ -30,7 +29,7 @@ class ItemList extends Component {
 		const { selectedPersonId, onPersonSelect } = this.props;
 
 		return arr.map(person => {
-			const { id, name } = utils.transformPersonData(person);
+			const { id, name } = person;
 
 			return (
 				<li

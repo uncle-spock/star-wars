@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PageLayout from '../PageLayout/PageLayout'
 import RandomPlanet from '../RandomPlanet/RandomPlanet';
 import ItemList from '../ItemList/ItemList';
-import PersonalDetails from '../PersonDetails/PersonDetails';
+import PersonDetails from '../PersonDetails/PersonDetails';
 
 class App extends Component {
 	state = {
@@ -31,7 +31,7 @@ class App extends Component {
 						</div>
 
 						<div className="col-12 col-md-6">
-							<PersonalDetails selectedPersonId={selectedPersonId} />
+							<PersonDetails selectedPersonId={selectedPersonId} />
 						</div>
 					</div>
 				</div>

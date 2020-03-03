@@ -7,29 +7,35 @@ const fetchApiData = async url => {
 	return await response.json();
 };
 
-export const getPeople = () => fetchApiData(`people`);
+export const getPeople = async () => {
+	const result = (await fetchApiData(`people`)).results;
+	return result.map(person => utils.transformPersonData(person));
+};
 
 export const getPerson = async (id) => {
-	const person = await fetchApiData(`people/${id}`);
-	return utils.transformPersonData(person, id);
+	const result = await fetchApiData(`people/${id}`);
+	return utils.transformPersonData(result);
 };
 
-export const getFilms = () => fetchApiData('films');
+// export const getFilms = async () => (await fetchApiData('films')).results;
 
-export const getAllPlanets = () => fetchApiData('planets');
+export const getAllPlanets = async () => {
+	const result = (await fetchApiData('planets')).results;
+	return result.map(planet => utils.transformPlanetData(planet));
+};
 
 export const getPlanet = async (id) => {
-	const planet = await fetchApiData(`planets/${id}`);
-	return utils.transformPlanetData(planet, id);
+	const result = await fetchApiData(`planets/${id}`);
+	return utils.transformPlanetData(result);
 };
 
-export const getSpecies = () => fetchApiData('species');
+// export const getSpecies = async () => (await fetchApiData('species')).results;
 
-export const getAllStarships = () => fetchApiData('starships');
+// export const getAllStarships = async () => (await fetchApiData('starships')).results;
 
 export const getStarship = async (id) => {
 	const starship = await fetchApiData(`starships/${id}`);
-	return utils.transformStarshipData(starship, id);
+	return utils.transformStarshipData(starship);
 };
 
-export const getVehicles = () => fetchApiData('vehicles');
+// export const getVehicles = async () => (await fetchApiData('vehicles')).results;

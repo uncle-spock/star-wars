@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Loader from '../Loader/Loader';
 import * as api from '../../services/api/apiService';
-import * as utils from '../../services/utils';
 import PlanetCard from '../PlanetCard/PlanetCard';
 
 class RandomPlanet extends Component {
@@ -16,9 +15,9 @@ class RandomPlanet extends Component {
 
 	async updatePlanet() {
 		try {
-			const allPlanets = (await api.getAllPlanets()).results;
+			const allPlanets = await api.getAllPlanets();
 			const id = Math.floor(Math.random() * (allPlanets.length - 1));
-			const planet = utils.transformPlanetData(allPlanets[id]);
+			const planet = allPlanets[id];
 
 			this.setState({
 				planet,
