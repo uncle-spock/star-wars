@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PageLayout from '../PageLayout/PageLayout'
 import RandomPlanet from '../RandomPlanet/RandomPlanet';
+import PeoplePage from '../PeoplePage/PeoplePage';
 import ItemList from '../ItemList/ItemList';
 import PersonDetails from '../PersonDetails/PersonDetails';
 
@@ -25,15 +26,7 @@ class App extends Component {
 						<RandomPlanet />
 					</div>
 
-					<div className="row">
-						<div className="col-12 col-md-6">
-							<ItemList selectedPersonId={selectedPersonId} onPersonSelect={this.onPersonSelect} />
-						</div>
-
-						<div className="col-12 col-md-6">
-							<PersonDetails selectedPersonId={selectedPersonId} />
-						</div>
-					</div>
+					<PeoplePage selectedPersonId={selectedPersonId} onPersonSelect={this.onPersonSelect} />
 				</div>
 			</PageLayout>
 		);

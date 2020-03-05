@@ -11,9 +11,14 @@ class RandomPlanet extends Component {
 
 	componentDidMount() {
 		this.updatePlanet();
+		this.interval = setInterval(this.updatePlanet, 5000);
 	}
 
-	async updatePlanet() {
+	componentWillUnmount() {
+		clearInterval(this.interval);
+	}
+
+	updatePlanet = async () => {
 		try {
 			const allPlanets = await api.getAllPlanets();
 			const id = Math.floor(Math.random() * (allPlanets.length - 1));

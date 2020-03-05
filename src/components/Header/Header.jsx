@@ -1,36 +1,50 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import logoImg from '../../assets/img/logo.png';
 import './header.scss';
 
-const Header = () => {
-	return (
-		<header className="header">
-			<div className="logo">
-				<img src={logoImg} alt="star wars logo" />
-			</div>
+const menuItems = [
+	'People',
+	'Starships',
+	'Planet'
+];
 
-			<nav className="nav-box">
-				<ul>
-					<li className="active">
-						<span>Active</span>
-					</li>
+class Header extends Component {
+	state = {
+		activeItemIndex: 0
+	}
 
-					<li>
-						<span>Link</span>
-					</li>
+	handleClick(index) {
+		this.setState({
+			activeItemIndex: index
+		});
+	}
 
-					<li>
-						<span>Link</span>
-					</li>
+	renderItems() {
+		return menuItems.map((item, index) => {
+			return (
+				<li key={item} onClick={() => this.handleClick(index)} className={index === this.state.activeItemIndex ? 'active' : ''}>
+					<span>{item}</span>
+				</li>
+			);
+		});
+	}
 
-					<li>
-						<span>link</span>
-					</li>
-				</ul>
-			</nav>
-		</header>
-	);
+	render() {
+		return (
+			<header className="header">
+				<div className="logo">
+					<img src={logoImg} alt="star wars logo" />
+				</div>
+
+				<nav className="nav-box">
+					<ul>
+						{this.renderItems()}
+					</ul>
+				</nav>
+			</header>
+		);
+	}
 };
 
 export default Header;

@@ -8,7 +8,7 @@ import Loader from '../Loader/Loader';
 
 class PersonDetails extends Component {
 	state = {
-		person: null,
+		person: {},
 		isLoading: true
 	}
 
@@ -59,36 +59,38 @@ class PersonDetails extends Component {
 	render() {
 		const { person, isLoading } = this.state;
 
-		if (isLoading) return <Loader />;
-
 		const { id, name, gender, birthYear, eyeColor } = person;
 
 		return (
 			<div className="card-box with-img">
-				<div className="card-img-box">
-					<img src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} alt="people" />
-				</div>
+				{!isLoading ? (
+					<>
+						<div className="card-img-box">
+							<img src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} alt="people" />
+						</div>
 
-				<div className="card-content-box">
-					<h3>{name}</h3>
+						<div className="card-content-box">
+							<h3>{name}</h3>
 
-					<ul className="details-list">
-						<li>
-							<span className="details-label">Gender:</span>
-							<span className="details-value">{gender}</span>
-						</li>
+							<ul className="details-list">
+								<li>
+									<span className="details-label">Gender:</span>
+									<span className="details-value">{gender}</span>
+								</li>
 
-						<li>
-							<span className="details-label">Birth Year:</span>
-							<span className="details-value">{birthYear}</span>
-						</li>
+								<li>
+									<span className="details-label">Birth Year:</span>
+									<span className="details-value">{birthYear}</span>
+								</li>
 
-						<li>
-							<span className="details-label">Eye color:</span>
-							<span className="details-value">{eyeColor}</span>
-						</li>
-					</ul>
-				</div>
+								<li>
+									<span className="details-label">Eye color:</span>
+									<span className="details-value">{eyeColor}</span>
+								</li>
+							</ul>
+						</div>
+					</>
+				) : <Loader />}
 			</div>
 		);
 	}

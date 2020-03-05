@@ -32,8 +32,10 @@
 
       li {
         padding: 0 10px;
+        cursor: pointer;
 
-        &.active {
+        &.active,
+        &:hover {
           color: $primary;
         }
       }
