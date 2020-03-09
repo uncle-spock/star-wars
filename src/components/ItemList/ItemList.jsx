@@ -1,41 +1,42 @@
 import React, { Component } from 'react';
-import * as api from '../../services/api/apiService';
 import Loader from '../Loader/Loader';
 
 class ItemList extends Component {
 	state = {
-		peopleList: [],
+		itemsList: [],
 		isLoading: true
 	}
 
 	componentDidMount() {
-		this.updatePeopleList();
+		this.updateItemsList();
 	}
 
-	async updatePeopleList() {
+	async updateItemsList() {
+		const { getData } = this.props;
+
 		try {
-			const peopleList = await api.getPeople();
+			const itemsList = await getData();
 
 			this.setState({
-				peopleList,
+				itemsList,
 				isLoading: false
 			});
 		} catch (err) {
-			throw new Error(`Oops. Missing update people list: ${err}`);
+			throw new Error(`Oops. Missing update items list: ${err}`);
 		}
 	}
 
 	renderItems(arr) {
-		const { selectedPersonId, onPersonSelect } = this.props;
+		const { selectedItemId, onItemSelect } = this.props;
 
-		return arr.map(person => {
-			const { id, name } = person;
+		return arr.map(item => {
+			const { id, name } = item;
 
 			return (
 				<li
 					key={id}
-					onClick={() => onPersonSelect(id)}
-					className={id === selectedPersonId ? 'selected' : ''}
+					onClick={() => onItemSelect(id)}
+					className={id === selectedItemId ? 'selected' : ''}
 				>
 					{name}
 				</li>
@@ -44,11 +45,11 @@ class ItemList extends Component {
 	}
 
 	render() {
-		const { peopleList, isLoading } = this.state;
+		const { itemsList, isLoading } = this.state;
 
 		return (
 			<ul className="separated-list" >
-				{!isLoading ? this.renderItems(peopleList) : <Loader />}
+				{!isLoading ? this.renderItems(itemsList) : <Loader />}
 			</ul>
 		);
 	}

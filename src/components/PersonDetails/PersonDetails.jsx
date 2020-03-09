@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-
-import './person-details.scss';
-
 import * as api from '../../services/api/apiService';
 import Loader from '../Loader/Loader';
 

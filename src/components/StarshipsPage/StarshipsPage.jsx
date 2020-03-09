@@ -1,16 +1,24 @@
 import React from 'react';
 import ItemList from '../ItemList/ItemList';
-import PersonDetails from '../PersonDetails/PersonDetails';
+import StarshipDetails from '../StarshipDetails/StarshipDetails';
+import * as api from '../../services/api/apiService';
 
-const StarshipsPage = () => {
+const StarshipsPage = ({
+	selectedItemId,
+	onItemSelect
+}) => {
 	return (
 		<div className="row">
 			<div className="col-12 col-md-6">
-				<ItemList />
+				<ItemList
+					selectedItemId={selectedItemId}
+					onItemSelect={onItemSelect}
+					getData={api.getAllStarships}
+				/>
 			</div>
 
 			<div className="col-12 col-md-6">
-				<PersonDetails />
+				<StarshipDetails selectedStarshipId={selectedItemId} />
 			</div>
 		</div>
 	);

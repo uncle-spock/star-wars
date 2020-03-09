@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PageLayout from '../PageLayout/PageLayout'
 import RandomPlanet from '../RandomPlanet/RandomPlanet';
 import PeoplePage from '../PeoplePage/PeoplePage';
-import ItemList from '../ItemList/ItemList';
-import PersonDetails from '../PersonDetails/PersonDetails';
+import StarshipsPage from '../StarshipsPage/StarshipsPage';
 
 class App extends Component {
 	state = {
-		selectedPersonId: null
+		selectedPersonId: null,
+		selectedStarshipId: null
 	}
 
 	onPersonSelect = id => {
@@ -16,8 +16,14 @@ class App extends Component {
 		});
 	}
 
+	onStarshipSelect = id => {
+		this.setState({
+			selectedStarshipId: id
+		});
+	}
+
 	render() {
-		const { selectedPersonId } = this.state;
+		const { selectedPersonId, selectedStarshipId } = this.state;
 
 		return (
 			<PageLayout>
@@ -26,7 +32,17 @@ class App extends Component {
 						<RandomPlanet />
 					</div>
 
-					<PeoplePage selectedPersonId={selectedPersonId} onPersonSelect={this.onPersonSelect} />
+					<div className="mb-5">
+						<PeoplePage
+							selectedItemId={selectedPersonId}
+							onItemSelect={this.onPersonSelect}
+						/>
+					</div>
+
+					<StarshipsPage
+						selectedItemId={selectedStarshipId}
+						onItemSelect={this.onStarshipSelect}
+					/>
 				</div>
 			</PageLayout>
 		);

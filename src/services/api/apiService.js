@@ -31,7 +31,10 @@ export const getPlanet = async (id) => {
 
 // export const getSpecies = async () => (await fetchApiData('species')).results;
 
-// export const getAllStarships = async () => (await fetchApiData('starships')).results;
+export const getAllStarships = async () => {
+	const result = (await fetchApiData('starships')).results;
+	return result.map(starship => utils.transformStarshipData(starship));
+}
 
 export const getStarship = async (id) => {
 	const starship = await fetchApiData(`starships/${id}`);
