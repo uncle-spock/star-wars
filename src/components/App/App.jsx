@@ -3,11 +3,13 @@ import PageLayout from '../PageLayout/PageLayout'
 import RandomPlanet from '../RandomPlanet/RandomPlanet';
 import PeoplePage from '../PeoplePage/PeoplePage';
 import StarshipsPage from '../StarshipsPage/StarshipsPage';
+import PlanetsPage from '../PlanetsPage/PlanetsPage';
 
 class App extends Component {
 	state = {
 		selectedPersonId: null,
-		selectedStarshipId: null
+		selectedStarshipId: null,
+		selectedPlanetId: null
 	}
 
 	onPersonSelect = id => {
@@ -22,8 +24,14 @@ class App extends Component {
 		});
 	}
 
+	onPlanetSelect = id => {
+		this.setState({
+			selectedPlanetId: id
+		});
+	}
+
 	render() {
-		const { selectedPersonId, selectedStarshipId } = this.state;
+		const { selectedPersonId, selectedStarshipId, selectedPlanetId } = this.state;
 
 		return (
 			<PageLayout>
@@ -39,9 +47,16 @@ class App extends Component {
 						/>
 					</div>
 
-					<StarshipsPage
-						selectedItemId={selectedStarshipId}
-						onItemSelect={this.onStarshipSelect}
+					<div className="mb-5">
+						<StarshipsPage
+							selectedItemId={selectedStarshipId}
+							onItemSelect={this.onStarshipSelect}
+						/>
+					</div>
+
+					<PlanetsPage
+						selectedItemId={selectedPlanetId}
+						onItemSelect={this.onPlanetSelect}
 					/>
 				</div>
 			</PageLayout>

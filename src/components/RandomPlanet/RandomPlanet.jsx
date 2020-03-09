@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Loader from '../Loader/Loader';
 import * as api from '../../services/api/apiService';
-import PlanetCard from '../PlanetCard/PlanetCard';
+import ItemCard from '../ItemCard/ItemCard';
 
 class RandomPlanet extends Component {
 	state = {
@@ -11,12 +11,12 @@ class RandomPlanet extends Component {
 
 	componentDidMount() {
 		this.updatePlanet();
-		this.interval = setInterval(this.updatePlanet, 5000);
+		// this.interval = setInterval(this.updatePlanet, 5000);
 	}
 
-	componentWillUnmount() {
-		clearInterval(this.interval);
-	}
+	// componentWillUnmount() {
+	// 	clearInterval(this.interval);
+	// }
 
 	updatePlanet = async () => {
 		try {
@@ -41,7 +41,19 @@ class RandomPlanet extends Component {
 
 		return (
 			<div className="card-box with-img">
-				{!isLoading ? <PlanetCard planet={planet} /> : <Loader />}
+				{!isLoading ? (
+					<ItemCard
+						imageSection="planets"
+						item={planet}
+						listPoints={[
+							'population',
+							'rotationPeriod',
+							'orbitalPeriod',
+							'diameter',
+							'climate',
+						]}
+					/>
+				) : <Loader />}
 			</div>
 		);
 	}

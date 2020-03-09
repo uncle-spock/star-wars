@@ -27,10 +27,10 @@ class ItemList extends Component {
 	}
 
 	renderItems(arr) {
-		const { selectedItemId, onItemSelect } = this.props;
+		const { selectedItemId, onItemSelect, renderItem } = this.props;
 
 		return arr.map(item => {
-			const { id, name } = item;
+			const { id, label, additionalInfo } = renderItem(item);
 
 			return (
 				<li
@@ -38,7 +38,13 @@ class ItemList extends Component {
 					onClick={() => onItemSelect(id)}
 					className={id === selectedItemId ? 'selected' : ''}
 				>
-					{name}
+					<div>
+						{label}
+					</div>
+
+					<small>
+						{!!additionalInfo && additionalInfo.map(item => item)}
+					</small>
 				</li>
 			);
 		});

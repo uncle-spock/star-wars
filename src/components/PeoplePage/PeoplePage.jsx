@@ -1,6 +1,7 @@
 import React from 'react';
 import ItemList from '../ItemList/ItemList';
-import PersonDetails from '../PersonDetails/PersonDetails';
+import ItemDetails from '../ItemDetails/ItemDetails';
+import InfoPanel from '../InfoPanel/InfoPanel';
 import * as api from '../../services/api/apiService';
 
 const PeoplePage = ({
@@ -8,19 +9,28 @@ const PeoplePage = ({
 	onItemSelect
 }) => {
 	return (
-		<div className="row">
-			<div className="col-12 col-md-6">
+		<InfoPanel
+			leftBlock={
 				<ItemList
 					selectedItemId={selectedItemId}
 					onItemSelect={onItemSelect}
 					getData={api.getPeople}
+					renderItem={({ id, name, birthYear }) => ({
+						id: id,
+						label: name,
+						additionalInfo: [`Birth year: ${birthYear}`]
+					})}
 				/>
-			</div>
-
-			<div className="col-12 col-md-6">
-				<PersonDetails selectedPersonId={selectedItemId} />
-			</div>
-		</div>
+			}
+			rightBlock={
+				<ItemDetails
+					selectedItemId={selectedItemId}
+					getData={api.getPerson}
+					imageSection="characters"
+					listPoints={['gender', 'birthYear', 'eyeColor']}
+				/>
+			}
+		/>
 	);
 };
 
