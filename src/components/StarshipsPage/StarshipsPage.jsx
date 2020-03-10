@@ -8,6 +8,14 @@ const StarshipsPage = ({
 	selectedItemId,
 	onItemSelect
 }) => {
+	const listSettings = (listItem) => (
+		{
+			id: listItem.id,
+			label: listItem.name,
+			additionalInfo: [`Model: ${listItem.model}`]
+		}
+	);
+
 	return (
 		<InfoPanel
 			leftBlock={
@@ -15,11 +23,7 @@ const StarshipsPage = ({
 					selectedItemId={selectedItemId}
 					onItemSelect={onItemSelect}
 					getData={api.getAllStarships}
-					renderItem={({ id, name, model }) => ({
-						id: id,
-						label: name,
-						additionalInfo: [`Model: ${model}`]
-					})}
+					renderItem={listSettings}
 				/>
 			}
 			rightBlock={

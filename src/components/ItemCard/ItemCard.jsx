@@ -27,7 +27,7 @@ const ItemCard = ({
 }) => {
 	const renderList = (obj, arr) => {
 		return arr.map(prop => (
-			<li>
+			<li key={prop}>
 				<span className="details-label">{itemListOptions[prop]}:</span>
 				<span className="details-value">{obj[prop]}</span>
 			</li>

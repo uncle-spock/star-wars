@@ -8,6 +8,14 @@ const PlanetsPage = ({
 	selectedItemId,
 	onItemSelect
 }) => {
+	const listSettings = (listItem) => (
+		{
+			id: listItem.id,
+			label: listItem.name,
+			additionalInfo: [`D: ${listItem.diameter}`]
+		}
+	);
+
 	return (
 		<InfoPanel
 			leftBlock={
@@ -15,11 +23,7 @@ const PlanetsPage = ({
 					selectedItemId={selectedItemId}
 					onItemSelect={onItemSelect}
 					getData={api.getAllPlanets}
-					renderItem={({ id, name, diameter }) => ({
-						id: id,
-						label: name,
-						additionalInfo: [`D: ${diameter}`]
-					})}
+					renderItem={listSettings}
 				/>
 			}
 			rightBlock={

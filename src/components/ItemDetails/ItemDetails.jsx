@@ -23,18 +23,7 @@ class ItemDetails extends Component {
 		const { selectedItemId, getData, imageSection } = this.props;
 
 		if (!selectedItemId) {
-			// try {
-			// 	const item = (await api.getPeople())[0];
-
-			// 	this.setState({
-			// 		item,
-			// 		isLoading: false
-			// 	});
-
 			return;
-			// } catch (err) {
-			// 	throw new Error(`Oops. Missing update item details: ${err}`);
-			// }
 		};
 
 		this.setState({

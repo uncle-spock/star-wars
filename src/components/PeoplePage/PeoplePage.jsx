@@ -8,6 +8,14 @@ const PeoplePage = ({
 	selectedItemId,
 	onItemSelect
 }) => {
+	const listSettings = (listItem) => (
+		{
+			id: listItem.id,
+			label: listItem.name,
+			additionalInfo: [`Birth year: ${listItem.birthYear}`]
+		}
+	);
+
 	return (
 		<InfoPanel
 			leftBlock={
@@ -15,11 +23,7 @@ const PeoplePage = ({
 					selectedItemId={selectedItemId}
 					onItemSelect={onItemSelect}
 					getData={api.getPeople}
-					renderItem={({ id, name, birthYear }) => ({
-						id: id,
-						label: name,
-						additionalInfo: [`Birth year: ${birthYear}`]
-					})}
+					renderItem={listSettings}
 				/>
 			}
 			rightBlock={

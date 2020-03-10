@@ -1,34 +1,13 @@
-import React, { Component } from 'react';
-import Loader from '../Loader/Loader';
+import React from 'react';
+import withData from '../hocs/withData';
 
-class ItemList extends Component {
-	state = {
-		itemsList: [],
-		isLoading: true
-	}
-
-	componentDidMount() {
-		this.updateItemsList();
-	}
-
-	async updateItemsList() {
-		const { getData } = this.props;
-
-		try {
-			const itemsList = await getData();
-
-			this.setState({
-				itemsList,
-				isLoading: false
-			});
-		} catch (err) {
-			throw new Error(`Oops. Missing update items list: ${err}`);
-		}
-	}
-
-	renderItems(arr) {
-		const { selectedItemId, onItemSelect, renderItem } = this.props;
-
+const ItemList = ({
+	arrData,
+	selectedItemId,
+	onItemSelect,
+	renderItem
+}) => {
+	const renderAllItems = arr => {
 		return arr.map(item => {
 			const { id, label, additionalInfo } = renderItem(item);
 
@@ -38,27 +17,20 @@ class ItemList extends Component {
 					onClick={() => onItemSelect(id)}
 					className={id === selectedItemId ? 'selected' : ''}
 				>
-					<div>
-						{label}
-					</div>
-
+					<strong>{label} </strong>
 					<small>
 						{!!additionalInfo && additionalInfo.map(item => item)}
 					</small>
 				</li>
 			);
 		});
-	}
+	};
 
-	render() {
-		const { itemsList, isLoading } = this.state;
-
-		return (
-			<ul className="separated-list" >
-				{!isLoading ? this.renderItems(itemsList) : <Loader />}
-			</ul>
-		);
-	}
+	return (
+		<ul className="separated-list" >
+			{renderAllItems(arrData)}
+		</ul>
+	);
 };
 
-export default ItemList;
+export default withData(ItemList);
