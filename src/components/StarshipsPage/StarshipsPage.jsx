@@ -1,29 +1,19 @@
 import React from 'react';
-import ItemList from '../ItemList/ItemList';
 import ItemDetails from '../ItemDetails/ItemDetails';
 import InfoPanel from '../InfoPanel/InfoPanel';
 import * as api from '../../services/api/apiService';
+import { StarshipsList } from '../helper-components';
 
 const StarshipsPage = ({
 	selectedItemId,
 	onItemSelect
 }) => {
-	const listSettings = (listItem) => (
-		{
-			id: listItem.id,
-			label: listItem.name,
-			additionalInfo: [`Model: ${listItem.model}`]
-		}
-	);
-
 	return (
 		<InfoPanel
 			leftBlock={
-				<ItemList
+				<StarshipsList
 					selectedItemId={selectedItemId}
 					onItemSelect={onItemSelect}
-					getData={api.getAllStarships}
-					renderItem={listSettings}
 				/>
 			}
 			rightBlock={

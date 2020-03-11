@@ -1,5 +1,4 @@
 import React from 'react';
-import withData from '../hocs/withData';
 
 const ItemList = ({
 	arrData,
@@ -8,6 +7,8 @@ const ItemList = ({
 	renderItem
 }) => {
 	const renderAllItems = arr => {
+		if (!arr) return;
+
 		return arr.map(item => {
 			const { id, label, additionalInfo } = renderItem(item);
 
@@ -33,4 +34,4 @@ const ItemList = ({
 	);
 };
 
-export default withData(ItemList);
+export default ItemList;

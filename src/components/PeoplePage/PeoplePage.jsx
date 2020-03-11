@@ -1,29 +1,19 @@
 import React from 'react';
-import ItemList from '../ItemList/ItemList';
 import ItemDetails from '../ItemDetails/ItemDetails';
 import InfoPanel from '../InfoPanel/InfoPanel';
 import * as api from '../../services/api/apiService';
+import { PeopleList } from '../helper-components';
 
 const PeoplePage = ({
 	selectedItemId,
 	onItemSelect
 }) => {
-	const listSettings = (listItem) => (
-		{
-			id: listItem.id,
-			label: listItem.name,
-			additionalInfo: [`Birth year: ${listItem.birthYear}`]
-		}
-	);
-
 	return (
 		<InfoPanel
 			leftBlock={
-				<ItemList
+				<PeopleList
 					selectedItemId={selectedItemId}
 					onItemSelect={onItemSelect}
-					getData={api.getPeople}
-					renderItem={listSettings}
 				/>
 			}
 			rightBlock={

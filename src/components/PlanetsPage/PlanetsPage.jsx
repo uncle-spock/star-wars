@@ -1,29 +1,19 @@
 import React from 'react';
-import ItemList from '../ItemList/ItemList';
 import ItemDetails from '../ItemDetails/ItemDetails';
 import InfoPanel from '../InfoPanel/InfoPanel';
 import * as api from '../../services/api/apiService';
+import { PlanetsList } from '../helper-components';
 
 const PlanetsPage = ({
 	selectedItemId,
 	onItemSelect
 }) => {
-	const listSettings = (listItem) => (
-		{
-			id: listItem.id,
-			label: listItem.name,
-			additionalInfo: [`D: ${listItem.diameter}`]
-		}
-	);
-
 	return (
 		<InfoPanel
 			leftBlock={
-				<ItemList
+				<PlanetsList
 					selectedItemId={selectedItemId}
 					onItemSelect={onItemSelect}
-					getData={api.getAllPlanets}
-					renderItem={listSettings}
 				/>
 			}
 			rightBlock={

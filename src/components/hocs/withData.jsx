@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Loader from '../Loader/Loader';
 
-const withData = (View) => {
+const withData = (View, getData) => {
 	return class extends Component {
 		state = {
 			arrData: [],
@@ -13,8 +13,6 @@ const withData = (View) => {
 		}
 
 		async updateData() {
-			const { getData } = this.props;
-
 			try {
 				const arrData = await getData();
 
@@ -36,7 +34,6 @@ const withData = (View) => {
 						<View
 							{...this.props}
 							arrData={arrData}
-							getData={this.props.getData}
 						/>
 					) : (
 							<div className="card-box with-img">
