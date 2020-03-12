@@ -4,6 +4,8 @@ import RandomPlanet from '../RandomPlanet/RandomPlanet';
 import PeoplePage from '../PeoplePage/PeoplePage';
 import StarshipsPage from '../StarshipsPage/StarshipsPage';
 import PlanetsPage from '../PlanetsPage/PlanetsPage';
+import { ApiServiceProvider } from '../ApiServiceContext';
+import * as api from '../../services/api/apiService';
 
 class App extends Component {
 	state = {
@@ -34,32 +36,34 @@ class App extends Component {
 		const { selectedPersonId, selectedStarshipId, selectedPlanetId } = this.state;
 
 		return (
-			<PageLayout>
-				<div className="container">
-					<div className="mb-5">
-						<RandomPlanet />
-					</div>
+			<ApiServiceProvider value={api}>
+				<PageLayout>
+					<div className="container">
+						<div className="mb-5">
+							<RandomPlanet />
+						</div>
 
-					<div className="mb-5">
-						<PeoplePage
-							selectedItemId={selectedPersonId}
-							onItemSelect={this.onPersonSelect}
-						/>
-					</div>
+						<div className="mb-5">
+							<PeoplePage
+								selectedItemId={selectedPersonId}
+								onItemSelect={this.onPersonSelect}
+							/>
+						</div>
 
-					<div className="mb-5">
-						<StarshipsPage
-							selectedItemId={selectedStarshipId}
-							onItemSelect={this.onStarshipSelect}
-						/>
-					</div>
+						{/* <div className="mb-5">
+							<StarshipsPage
+								selectedItemId={selectedStarshipId}
+								onItemSelect={this.onStarshipSelect}
+							/>
+						</div>
 
-					<PlanetsPage
-						selectedItemId={selectedPlanetId}
-						onItemSelect={this.onPlanetSelect}
-					/>
-				</div>
-			</PageLayout>
+						<PlanetsPage
+							selectedItemId={selectedPlanetId}
+							onItemSelect={this.onPlanetSelect}
+						/> */}
+					</div>
+				</PageLayout>
+			</ApiServiceProvider>
 		);
 	}
 };

@@ -1,11 +1,17 @@
 import React from 'react';
 import withDetails from '../hocs/withDetails';
 import ItemDetails from '../ItemDetails/ItemDetails';
-import * as api from '../../services/api/apiService';
+import { ApiServiceConsumer } from '../ApiServiceContext';
 
 const withSettings = (Wrapped, image, arr) => {
 	return props => {
-		return <Wrapped {...props} imageSection={image} listPoints={arr} />
+		return (
+			<ApiServiceConsumer>
+				{api => {
+					return <Wrapped {...props} imageSection={image} listPoints={arr} api={api} />;
+				}}
+			</ApiServiceConsumer>
+		);
 	};
 };
 
@@ -45,8 +51,8 @@ const ConfiguredPlanetDetails = withSettings(
 	]
 );
 
-export const PeopleDetails = withDetails(ConfiguredPersonDetails, api.getPerson);
+export const PersonDetails = withDetails(ConfiguredPersonDetails, 'getPerson');
 
-export const StarshipDetails = withDetails(ConfiguredStarshipDetails, api.getStarship);
+export const StarshipDetails = withDetails(ConfiguredStarshipDetails, 'getStarship');
 
-export const PlanetDetails = withDetails(ConfiguredPlanetDetails, api.getPlanet);
+export const PlanetDetails = withDetails(ConfiguredPlanetDetails, 'getPlanet');

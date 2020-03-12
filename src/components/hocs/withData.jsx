@@ -13,8 +13,12 @@ const withData = (View, getData) => {
 		}
 
 		async updateData() {
+			const { onItemSelect } = this.props;
+
 			try {
 				const arrData = await getData();
+
+				onItemSelect(arrData[0].id);
 
 				this.setState({
 					arrData,

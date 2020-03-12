@@ -20,7 +20,7 @@ const withDetails = (View, getData) => {
 		}
 
 		async updateData() {
-			const { selectedItemId, imageSection } = this.props;
+			const { selectedItemId, imageSection, api } = this.props;
 
 			if (!selectedItemId) {
 				return;
@@ -31,7 +31,7 @@ const withDetails = (View, getData) => {
 			});
 
 			try {
-				const item = await getData(selectedItemId);
+				const item = await api[getData](selectedItemId);
 
 				this.setState({
 					item,
