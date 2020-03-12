@@ -1,8 +1,7 @@
 import React from 'react';
-import ItemDetails from '../ItemDetails/ItemDetails';
 import InfoPanel from '../InfoPanel/InfoPanel';
-import * as api from '../../services/api/apiService';
 import { PlanetsList } from '../helper-components';
+import { PlanetDetails } from '../helper-components/details-cards';
 
 const PlanetsPage = ({
 	selectedItemId,
@@ -17,17 +16,8 @@ const PlanetsPage = ({
 				/>
 			}
 			rightBlock={
-				<ItemDetails
+				<PlanetDetails
 					selectedItemId={selectedItemId}
-					getData={api.getPlanet}
-					imageSection="planets"
-					listPoints={[
-						'rotationPeriod',
-						'orbitalPeriod',
-						'diameter',
-						'climate',
-						'population'
-					]}
 				/>}
 		/>
 	);

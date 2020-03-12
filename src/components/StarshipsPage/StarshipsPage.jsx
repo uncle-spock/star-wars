@@ -1,8 +1,7 @@
 import React from 'react';
-import ItemDetails from '../ItemDetails/ItemDetails';
 import InfoPanel from '../InfoPanel/InfoPanel';
-import * as api from '../../services/api/apiService';
 import { StarshipsList } from '../helper-components';
+import { StarshipDetails } from '../helper-components/details-cards';
 
 const StarshipsPage = ({
 	selectedItemId,
@@ -17,19 +16,8 @@ const StarshipsPage = ({
 				/>
 			}
 			rightBlock={
-				<ItemDetails
+				<StarshipDetails
 					selectedItemId={selectedItemId}
-					getData={api.getStarship}
-					imageSection="starships"
-					listPoints={[
-						'model',
-						'manufacturer',
-						'costInCredits',
-						'length',
-						'crew',
-						'passengers',
-						'cargoCapacity',
-					]}
 				/>
 			}
 		/>

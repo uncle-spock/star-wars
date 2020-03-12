@@ -1,8 +1,7 @@
 import React from 'react';
-import ItemDetails from '../ItemDetails/ItemDetails';
 import InfoPanel from '../InfoPanel/InfoPanel';
-import * as api from '../../services/api/apiService';
 import { PeopleList } from '../helper-components';
+import { PeopleDetails } from '../helper-components';
 
 const PeoplePage = ({
 	selectedItemId,
@@ -17,11 +16,8 @@ const PeoplePage = ({
 				/>
 			}
 			rightBlock={
-				<ItemDetails
+				<PeopleDetails
 					selectedItemId={selectedItemId}
-					getData={api.getPerson}
-					imageSection="characters"
-					listPoints={['gender', 'birthYear', 'eyeColor']}
 				/>
 			}
 		/>

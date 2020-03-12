@@ -44,18 +44,13 @@ const withDetails = (View, getData) => {
 		}
 
 		render() {
-			const { listPoints } = this.props;
-			const { item, imageSection, isLoading } = this.state;
-
 			return (
 				<>
-					{!isLoading ? (
+					{!this.state.isLoading ? (
 						<div className="card-box with-img">
 							<View
 								{...this.props}
-								imageSection={imageSection}
-								item={item}
-								listPoints={listPoints}
+								item={this.state.item}
 							/>
 						</div>
 					) : (
