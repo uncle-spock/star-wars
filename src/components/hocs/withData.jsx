@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Loader from '../Loader/Loader';
 
-const withData = (View, getData) => {
+const withData = (View) => {
 	return class extends Component {
 		state = {
 			arrData: [],
@@ -13,7 +13,10 @@ const withData = (View, getData) => {
 		}
 
 		async updateData() {
-			const { onItemSelect } = this.props;
+
+			const { onItemSelect, mapMethodsToProps } = this.props;
+
+			const { getData } = mapMethodsToProps;
 
 			try {
 				const arrData = await getData();

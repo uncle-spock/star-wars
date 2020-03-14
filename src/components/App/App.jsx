@@ -50,7 +50,7 @@ class App extends Component {
 							/>
 						</div>
 
-						{/* <div className="mb-5">
+						<div className="mb-5">
 							<StarshipsPage
 								selectedItemId={selectedStarshipId}
 								onItemSelect={this.onStarshipSelect}
@@ -60,7 +60,7 @@ class App extends Component {
 						<PlanetsPage
 							selectedItemId={selectedPlanetId}
 							onItemSelect={this.onPlanetSelect}
-						/> */}
+						/>
 					</div>
 				</PageLayout>
 			</ApiServiceProvider>

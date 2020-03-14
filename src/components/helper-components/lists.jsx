@@ -1,7 +1,8 @@
 import React from 'react';
 import ItemList from "../ItemList/ItemList";
 import withData from "../hocs/withData";
-import * as api from "../../services/api/apiService";
+import withApiService from '../hocs/withApiService';
+import { methodCreater } from '../../services/utils';
 
 const withSettings = (Wrapped, fn) => {
 	return props => {
@@ -42,8 +43,8 @@ const ConfiguredPlanetsList = withSettings(
 	)
 );
 
-export const PeopleList = withData(ConfiguredPeopleList, api.getPeople);
+export const PeopleList = withApiService(withData(ConfiguredPeopleList), methodCreater('getPeople'));
 
-export const StarshipsList = withData(ConfiguredStarshipsList, api.getAllStarships);
+export const StarshipsList = withApiService(withData(ConfiguredStarshipsList), methodCreater('getAllStarships'));
 
-export const PlanetsList = withData(ConfiguredPlanetsList, api.getAllPlanets);
+export const PlanetsList = withApiService(withData(ConfiguredPlanetsList), methodCreater('getAllPlanets'));

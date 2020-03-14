@@ -68,3 +68,9 @@ export const transformPersonData = person => {
 		eyeColor: eye_color
 	};
 };
+
+export const methodCreater = method => {
+	return api => ({
+		getData: api[method]
+	});
+};

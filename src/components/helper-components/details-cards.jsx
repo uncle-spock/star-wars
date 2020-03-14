@@ -1,8 +1,8 @@
 import React from 'react';
 import withDetails from '../hocs/withDetails';
 import ItemDetails from '../ItemDetails/ItemDetails';
-import * as api from '../../services/api/apiService';
-import { ApiServiceConsumer } from '../ApiServiceContext';
+import withApiService from '../hocs/withApiService';
+import { methodCreater } from '../../services/utils';
 
 const withSettings = (Wrapped, image, arr) => {
 	return props => {
@@ -46,31 +46,8 @@ const ConfiguredPlanetDetails = withSettings(
 	]
 );
 
-const foo = (Wrapped, mapMethodsToProps) => {
-	return props => {
-		return (
-			<ApiServiceConsumer>
-				{api => <Wrapped {...props} mapMethodsToProps={mapMethodsToProps(api)} />}
-			</ApiServiceConsumer>
-		);
-	}
-}
+export const PersonDetails = withApiService(withDetails(ConfiguredPersonDetails), methodCreater('getPerson'));
 
-const mapPersonMethodsToProps = api => ({
-	getData: api.getPerson
-});
+export const StarshipDetails = withApiService(withDetails(ConfiguredStarshipDetails), methodCreater('getStarship'));
 
-export const PersonDetails = foo(withDetails(ConfiguredPersonDetails), mapPersonMethodsToProps);
-
-
-const mapStarshipMethodsToProps = api => ({
-	getData: api.getPerson
-});
-
-export const StarshipDetails = foo(withDetails(ConfiguredStarshipDetails), mapStarshipMethodsToProps);
-
-const mapPlanetMethodsToProps = api => ({
-	getData: api.getPerson
-});
-
-export const PlanetDetails = foo(withDetails(ConfiguredPlanetDetails), mapPlanetMethodsToProps);
+export const PlanetDetails = withApiService(withDetails(ConfiguredPlanetDetails), methodCreater('getPlanet'));

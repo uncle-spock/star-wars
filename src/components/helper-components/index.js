@@ -7,7 +7,7 @@ import {
 import {
 	PersonDetails,
 	StarshipDetails,
-	PlanetDetails
+	PlanetDetails,
 } from './details-cards';
 
 export {
@@ -16,5 +16,5 @@ export {
 	PlanetsList,
 	PersonDetails,
 	StarshipDetails,
-	PlanetDetails
+	PlanetDetails,
 };

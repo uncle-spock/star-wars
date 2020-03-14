@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Loader from '../Loader/Loader';
-import * as api from '../../services/api/apiService';
-import ItemCard from '../ItemCard/ItemCard';
+import ItemDetails from '../ItemDetails/ItemDetails';
+import withApiService from '../hocs/withApiService';
+import { methodCreater } from '../../services/utils';
 
 class RandomPlanet extends Component {
 	state = {
@@ -19,8 +20,10 @@ class RandomPlanet extends Component {
 	// }
 
 	updatePlanet = async () => {
+		const { mapMethodsToProps: { getData } } = this.props;
+
 		try {
-			const allPlanets = await api.getAllPlanets();
+			const allPlanets = await getData();
 			const id = Math.floor(Math.random() * (allPlanets.length - 1));
 			const planet = allPlanets[id];
 
@@ -42,7 +45,7 @@ class RandomPlanet extends Component {
 		return (
 			<div className="card-box with-img">
 				{!isLoading ? (
-					<ItemCard
+					<ItemDetails
 						imageSection="planets"
 						item={planet}
 						listPoints={[
@@ -59,4 +62,4 @@ class RandomPlanet extends Component {
 	}
 };
 
-export default RandomPlanet;
+export default withApiService(RandomPlanet, methodCreater('getAllPlanets'));
