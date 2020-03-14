@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Loader from '../Loader/Loader';
 
-const withDetails = (View, method) => {
+const withDetails = (View) => {
 	return class extends Component {
 		state = {
 			item: {},
@@ -20,7 +20,8 @@ const withDetails = (View, method) => {
 		}
 
 		async updateData() {
-			const { selectedItemId, imageSection, api } = this.props;
+			const { selectedItemId, imageSection, mapMethodsToProps } = this.props;
+			const { getData } = mapMethodsToProps;
 
 			if (!selectedItemId) {
 				return;
@@ -31,7 +32,7 @@ const withDetails = (View, method) => {
 			});
 
 			try {
-				const item = await api[method](selectedItemId);
+				const item = await getData(selectedItemId);
 
 				this.setState({
 					item,

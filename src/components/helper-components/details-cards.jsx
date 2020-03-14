@@ -46,18 +46,31 @@ const ConfiguredPlanetDetails = withSettings(
 	]
 );
 
-const foo = Wrapped => {
+const foo = (Wrapped, mapMethodsToProps) => {
 	return props => {
 		return (
 			<ApiServiceConsumer>
-				{api => <Wrapped {...props} api={api} />}
+				{api => <Wrapped {...props} mapMethodsToProps={mapMethodsToProps(api)} />}
 			</ApiServiceConsumer>
 		);
 	}
 }
 
-export const PersonDetails = foo(withDetails(ConfiguredPersonDetails, 'getPerson'));
+const mapPersonMethodsToProps = api => ({
+	getData: api.getPerson
+});
 
-export const StarshipDetails = foo(withDetails(ConfiguredStarshipDetails, 'getStarship'));
+export const PersonDetails = foo(withDetails(ConfiguredPersonDetails), mapPersonMethodsToProps);
 
-export const PlanetDetails = foo(withDetails(ConfiguredPlanetDetails, 'getPlanet'));
+
+const mapStarshipMethodsToProps = api => ({
+	getData: api.getPerson
+});
+
+export const StarshipDetails = foo(withDetails(ConfiguredStarshipDetails), mapStarshipMethodsToProps);
+
+const mapPlanetMethodsToProps = api => ({
+	getData: api.getPerson
+});
+
+export const PlanetDetails = foo(withDetails(ConfiguredPlanetDetails), mapPlanetMethodsToProps);
