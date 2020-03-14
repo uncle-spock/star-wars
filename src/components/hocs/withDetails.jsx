@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Loader from '../Loader/Loader';
 
-const withDetails = (View, getData) => {
+const withDetails = (View, method) => {
 	return class extends Component {
 		state = {
 			item: {},
@@ -31,7 +31,7 @@ const withDetails = (View, getData) => {
 			});
 
 			try {
-				const item = await api[getData](selectedItemId);
+				const item = await api[method](selectedItemId);
 
 				this.setState({
 					item,
