@@ -2,30 +2,52 @@ import React from 'react';
 import PageLayout from '../PageLayout/PageLayout'
 import RandomPlanet from '../RandomPlanet/RandomPlanet';
 import { PeoplePage, StarshipsPage, PlanetsPage } from '../pages';
-import { ApiServiceProvider } from '../ApiServiceContext';
-import * as api from '../../services/api/apiService';
+import { Route } from 'react-router-dom';
+import { StarshipDetails } from '../helper-components';
 
 const App = () => {
 	return (
-		<ApiServiceProvider value={api}>
-			<PageLayout>
-				<div className="container">
-					<div className="mb-5">
-						<RandomPlanet />
-					</div>
+		<PageLayout>
+			<div className="container">
+				<Route
+					path="/"
+					render={() => <h1>Welcome to Star Wars data base</h1>}
+					exact
+				/>
 
-					<div className="mb-5">
-						<PeoplePage />
-					</div>
-
-					<div className="mb-5">
-						<StarshipsPage />
-					</div>
-
-					<PlanetsPage />
+				<div className="mb-5">
+					<RandomPlanet />
 				</div>
-			</PageLayout>
-		</ApiServiceProvider>
+
+				<Route
+					path="/people"
+					component={PeoplePage}
+					exact
+				/>
+
+				<Route
+					path="/planets"
+					component={PlanetsPage}
+					exact
+				/>
+
+				<Route
+					path="/starships"
+					component={StarshipsPage}
+					exact
+				/>
+
+				<Route
+					path="/starships/:id"
+					component={({ match }) => {
+						const { id } = match.params;
+
+						return <StarshipDetails selectedItemId={id} />;
+					}}
+				/>
+
+			</div>
+		</PageLayout>
 	);
 };
 

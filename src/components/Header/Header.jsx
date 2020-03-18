@@ -1,34 +1,35 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import logoImg from '../../assets/img/logo.png';
 import './header.scss';
 
-const menuItems = [
-	'People',
-	'Starships',
-	'Planet'
-];
+// const menuItems = [
+// 	'People',
+// 	'Starships',
+// 	'Planet'
+// ];
 
 class Header extends Component {
-	state = {
-		activeItemIndex: 0
-	}
+	// state = {
+	// 	activeItemIndex: 0
+	// }
 
-	handleClick(index) {
-		this.setState({
-			activeItemIndex: index
-		});
-	}
+	// handleClick(index) {
+	// 	this.setState({
+	// 		activeItemIndex: index
+	// 	});
+	// }
 
-	renderItems() {
-		return menuItems.map((item, index) => {
-			return (
-				<li key={item} onClick={() => this.handleClick(index)} className={index === this.state.activeItemIndex ? 'active' : ''}>
-					<span>{item}</span>
-				</li>
-			);
-		});
-	}
+	// renderItems() {
+	// 	return menuItems.map((item, index) => {
+	// 		return (
+	// 			<li key={item} onClick={() => this.handleClick(index)} className={index === this.state.activeItemIndex ? 'active' : ''}>
+	// 				<Link to="/people">{item}</Link>
+	// 			</li>
+	// 		);
+	// 	});
+	// }
 
 	render() {
 		return (
@@ -39,7 +40,21 @@ class Header extends Component {
 
 				<nav className="nav-box">
 					<ul>
-						{this.renderItems()}
+						<li>
+							<Link to="/">Home</Link>
+						</li>
+
+						<li>
+							<Link to="/people">People</Link>
+						</li>
+
+						<li>
+							<Link to="/planets">Planets</Link>
+						</li>
+
+						<li>
+							<Link to="/starships">Starships</Link>
+						</li>
 					</ul>
 				</nav>
 			</header>

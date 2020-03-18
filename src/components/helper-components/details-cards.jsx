@@ -25,12 +25,8 @@ const ConfiguredStarshipDetails = withSettings(
 	'starships',
 	[
 		'model',
-		'manufacturer',
 		'costInCredits',
 		'length',
-		'crew',
-		'passengers',
-		'cargoCapacity',
 	]
 );
 
@@ -38,8 +34,6 @@ const ConfiguredPlanetDetails = withSettings(
 	ItemDetails,
 	'planets',
 	[
-		'rotationPeriod',
-		'orbitalPeriod',
 		'diameter',
 		'climate',
 		'population'
