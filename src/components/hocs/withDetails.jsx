@@ -6,7 +6,7 @@ const withDetails = (View) => {
 		state = {
 			item: {},
 			imageSection: null,
-			isLoading: true
+			isLoading: false
 		}
 
 		componentDidMount() {
@@ -21,7 +21,6 @@ const withDetails = (View) => {
 
 		async updateData() {
 			const { selectedItemId, imageSection, mapMethodsToProps } = this.props;
-			const { getData } = mapMethodsToProps;
 
 			if (!selectedItemId) {
 				return;
@@ -30,6 +29,8 @@ const withDetails = (View) => {
 			this.setState({
 				isLoading: true
 			});
+
+			const { getData } = mapMethodsToProps;
 
 			try {
 				const item = await getData(selectedItemId);

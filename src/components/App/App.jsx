@@ -20,7 +20,7 @@ const App = () => {
 				</div>
 
 				<Route
-					path="/people"
+					path="/people/:itemId?"
 					component={PeoplePage}
 					exact
 				/>
@@ -38,11 +38,11 @@ const App = () => {
 				/>
 
 				<Route
-					path="/starships/:id"
+					path="/starships/:itemId"
 					component={({ match }) => {
-						const { id } = match.params;
+						const { itemId } = match.params;
 
-						return <StarshipDetails selectedItemId={id} />;
+						return <StarshipDetails selectedItemId={itemId} />;
 					}}
 				/>
 

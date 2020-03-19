@@ -13,15 +13,11 @@ const withData = (View) => {
 		}
 
 		async updateData() {
-
-			const { onItemSelect, mapMethodsToProps } = this.props;
-
+			const { mapMethodsToProps } = this.props;
 			const { getData } = mapMethodsToProps;
 
 			try {
 				const arrData = await getData();
-
-				onItemSelect(arrData[0].id);
 
 				this.setState({
 					arrData,

@@ -1,37 +1,18 @@
-import React, { Component } from 'react';
-import InfoPanel from '../InfoPanel/InfoPanel';
-import { StarshipsList, StarshipDetails } from '../helper-components';
+import React from 'react';
+import { StarshipsList } from '../helper-components';
+import { withRouter } from 'react-router-dom';
 
-class StarshipsPage extends Component {
-	state = {
-		selectedItemId: null
-	}
+const StarshipsPage = ({ history, match }) => {
+	const { itemId } = match.params;
 
-	onItemSelect = id => {
-		this.setState({
-			selectedItemId: id
-		});
-	}
+	const handleSelectItem = itemId => history.push(itemId);
 
-	render() {
-		const { selectedItemId } = this.state;
-
-		return (
-			<InfoPanel
-				leftBlock={
-					<StarshipsList
-						selectedItemId={selectedItemId}
-						onItemSelect={this.onItemSelect}
-					/>
-				}
-				rightBlock={
-					<StarshipDetails
-						selectedItemId={selectedItemId}
-					/>
-				}
-			/>
-		);
-	}
+	return (
+		<StarshipsList
+			selectedItemId={itemId}
+			onItemSelect={handleSelectItem}
+		/>
+	);
 };
 
-export default StarshipsPage;
+export default withRouter(StarshipsPage);

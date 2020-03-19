@@ -1,37 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import InfoPanel from '../InfoPanel/InfoPanel';
 import { PeopleList, PersonDetails } from '../helper-components';
+import { withRouter } from 'react-router-dom';
 
-class PeoplePage extends Component {
-	state = {
-		selectedItemId: null
-	}
+const PeoplePage = ({
+	history,
+	match
+}) => {
+	const { itemId } = match.params;
 
-	onItemSelect = id => {
-		this.setState({
-			selectedItemId: id
-		});
-	}
+	const handleSelectItem = itemId => history.push(itemId);
 
-	render() {
-		const { selectedItemId } = this.state;
-
-		return (
-			<InfoPanel
-				leftBlock={
-					<PeopleList
-						selectedItemId={selectedItemId}
-						onItemSelect={this.onItemSelect}
-					/>
-				}
-				rightBlock={
-					<PersonDetails
-						selectedItemId={selectedItemId}
-					/>
-				}
-			/>
-		);
-	}
+	return (
+		<InfoPanel
+			leftBlock={
+				<PeopleList
+					selectedItemId={itemId}
+					onItemSelect={handleSelectItem}
+				/>
+			}
+			rightBlock={
+				<PersonDetails
+					selectedItemId={itemId}
+				/>
+			}
+		/>
+	);
 };
 
-export default PeoplePage;
+export default withRouter(PeoplePage);

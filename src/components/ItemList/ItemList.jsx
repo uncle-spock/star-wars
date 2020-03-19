@@ -2,13 +2,11 @@ import React from 'react';
 
 const ItemList = ({
 	arrData,
-	selectedItemId,
 	onItemSelect,
-	renderItem
+	renderItem,
+	selectedItemId
 }) => {
 	const renderAllItems = arr => {
-		if (!arr) return;
-
 		return arr.map(item => {
 			const { id, label, additionalInfo } = renderItem(item);
 
@@ -16,7 +14,7 @@ const ItemList = ({
 				<li
 					key={id}
 					onClick={() => onItemSelect(id)}
-					className={id === selectedItemId ? 'selected' : ''}
+					className={selectedItemId === id ? 'selected' : ''}
 				>
 					<strong>{label} </strong>
 					<small>
@@ -29,8 +27,8 @@ const ItemList = ({
 
 	return (
 		<ul className="separated-list" >
-			{renderAllItems(arrData)}
-		</ul>
+			{!!arrData ? renderAllItems(arrData) : <span>No items</span>}
+		</ul >
 	);
 };
 

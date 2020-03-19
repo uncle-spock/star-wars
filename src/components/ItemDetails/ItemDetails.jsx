@@ -35,17 +35,21 @@ const ItemDetails = ({
 
 	return (
 		<>
-			<div className="card-img-box">
-				<img src={`https://starwars-visualguide.com/assets/img/${imageSection}/${id}.jpg`} alt="planet" />
-			</div>
+			{!!id ? (
+				<>
+					<div className="card-img-box">
+						<img src={`https://starwars-visualguide.com/assets/img/${imageSection}/${id}.jpg`} alt={imageSection} />
+					</div>
 
-			<div className="card-content-box">
-				<h3>{name}</h3>
+					<div className="card-content-box">
+						<h3>{name}</h3>
 
-				<ul className="details-list">
-					{renderList(item, listPoints)}
-				</ul>
-			</div>
+						<ul className="details-list">
+							{renderList(item, listPoints)}
+						</ul>
+					</div>
+				</>
+			) : <span>Please select an item</span>}
 		</>
 	);
 };
