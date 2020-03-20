@@ -1,65 +1,45 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import logoImg from '../../assets/img/logo.png';
 import './header.scss';
 
-// const menuItems = [
-// 	'People',
-// 	'Starships',
-// 	'Planet'
-// ];
+const Header = () => {
+	return (
+		<header className="header">
+			<div className="logo">
+				<img src={logoImg} alt="star wars logo" />
+			</div>
 
-class Header extends Component {
-	// state = {
-	// 	activeItemIndex: 0
-	// }
+			<nav className="nav-box">
+				<ul>
+					<li>
+						<Link to="/">Home</Link>
+					</li>
 
-	// handleClick(index) {
-	// 	this.setState({
-	// 		activeItemIndex: index
-	// 	});
-	// }
+					<li>
+						<Link to="/people/">People</Link>
+					</li>
 
-	// renderItems() {
-	// 	return menuItems.map((item, index) => {
-	// 		return (
-	// 			<li key={item} onClick={() => this.handleClick(index)} className={index === this.state.activeItemIndex ? 'active' : ''}>
-	// 				<Link to="/people">{item}</Link>
-	// 			</li>
-	// 		);
-	// 	});
-	// }
+					<li>
+						<Link to="/planets/">Planets</Link>
+					</li>
 
-	render() {
-		return (
-			<header className="header">
-				<div className="logo">
-					<img src={logoImg} alt="star wars logo" />
-				</div>
+					<li>
+						<Link to="/starships/">Starships</Link>
+					</li>
 
-				<nav className="nav-box">
-					<ul>
-						<li>
-							<Link to="/">Home</Link>
-						</li>
+					<li>
+						<Link to="/login">Login</Link>
+					</li>
 
-						<li>
-							<Link to="/people/">People</Link>
-						</li>
-
-						<li>
-							<Link to="/planets/">Planets</Link>
-						</li>
-
-						<li>
-							<Link to="/starships/">Starships</Link>
-						</li>
-					</ul>
-				</nav>
-			</header>
-		);
-	}
+					<li>
+						<Link to="/secret">Secret</Link>
+					</li>
+				</ul>
+			</nav>
+		</header>
+	);
 };
 
 export default Header;

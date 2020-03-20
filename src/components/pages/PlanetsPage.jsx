@@ -1,36 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import InfoPanel from '../InfoPanel/InfoPanel';
 import { PlanetsList, PlanetDetails } from '../helper-components';
+import { withRouter } from 'react-router-dom';
 
-class PlanetsPage extends Component {
-	state = {
-		selectedItemId: null
-	}
+const PlanetsPage = ({
+	history,
+	match
+}) => {
+	const { itemId } = match.params;
 
-	onItemSelect = id => {
-		this.setState({
-			selectedItemId: id
-		});
-	}
+	const handleSelectItem = id => history.push(id);
 
-	render() {
-		const { selectedItemId } = this.state;
-
-		return (
-			<InfoPanel
-				leftBlock={
-					<PlanetsList
-						selectedItemId={selectedItemId}
-						onItemSelect={this.onItemSelect}
-					/>
-				}
-				rightBlock={
-					<PlanetDetails
-						selectedItemId={selectedItemId}
-					/>}
-			/>
-		);
-	}
+	return (
+		<InfoPanel
+			leftBlock={
+				<PlanetsList
+					selectedItemId={itemId}
+					onItemSelect={handleSelectItem}
+				/>
+			}
+			rightBlock={
+				<PlanetDetails
+					selectedItemId={itemId}
+				/>}
+		/>
+	);
 };
 
-export default PlanetsPage;
+export default withRouter(PlanetsPage);

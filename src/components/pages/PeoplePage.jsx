@@ -9,7 +9,7 @@ const PeoplePage = ({
 }) => {
 	const { itemId } = match.params;
 
-	const handleSelectItem = itemId => history.push(itemId);
+	const handleSelectItem = id => history.push(id);
 
 	return (
 		<InfoPanel

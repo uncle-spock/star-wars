@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 const StarshipsPage = ({ history, match }) => {
 	const { itemId } = match.params;
 
-	const handleSelectItem = itemId => history.push(itemId);
+	const handleSelectItem = id => history.push(id);
 
 	return (
 		<StarshipsList
